@@ -1,0 +1,6 @@
+---
+# The list of currently recorded bags
+bagInfo[] current_bags
+
+# The list of recorded bags while the node was running
+bagInfo[] completed_bags

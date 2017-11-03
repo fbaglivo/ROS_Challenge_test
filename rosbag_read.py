@@ -1,9 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Oct 31 06:59:45 2017
+#! /usr/bin/env python
 
-@author: fabri
-"""
 
 import rosbag
 import itertools

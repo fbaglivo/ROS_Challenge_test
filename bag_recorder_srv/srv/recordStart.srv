@@ -1,0 +1,17 @@
+# The bag file path
+string bag_path
+
+# The topics to record
+string[] topic_list
+
+# Instruction to create the path or error
+bool create_path
+
+---
+# The return code nad unique bag identifier (empty if failure)
+int32 ret
+string bag_id
+
+int32 SUCCESS=0
+int32 BAG_ALREADY_STARTED=1
+int32 PATH_NOT_CREATED=2

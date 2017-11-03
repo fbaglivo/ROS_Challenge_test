@@ -1,0 +1,10 @@
+# A unique bag identifier
+string bag_id
+
+---
+# The return code
+int32 ret
+
+# Possible return codes
+int32 SUCCESS=0
+int32 NO_BAG_FOUND=1
