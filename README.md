@@ -26,7 +26,7 @@ To make a map these steps should be followed:
 
 	3. Launch RVIZ
 
-		roslaunch turtlebot_rviz_launchers view_navigation.launch --screen
+		roslaunch turtlebot_rviz_launchers view_robot.launch --screen
 
 	4. Launch Teleoperation package
 
