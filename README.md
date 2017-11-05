@@ -26,30 +26,60 @@ To make a map these steps should be followed:
 
 	3. Launch RVIZ
 
-		roslaunch turtlebot_rviz_launchers view_robot.launch --screen
+		roslaunch turtlebot_rviz_launchers view_navigation.launch 
 
 	4. Launch Teleoperation package
 
 		roslaunch turtlebot_teleop keyboard_teleop.launch
 
-	5. After a full map navigation was done, launch map saver
+	5. After a full map navigation was done, run map saver
 
-		roslaunch map_server map_saver -f <file name>
+		rosrun map_server map_saver -f <file name>
+
+
+## Map testing
+
+
+To navigate a map these steps should be followed:
+
+	1. Launch gazebo session
+
+		roslaunch turtlebot_gazebo turtlebot_world.launch
+
+	2. Launch AMCL package with a map
+
+		roslaunch turtlebot_gazebo amcl_demo.launch map_file:=<full path.yaml> 
+
+	3. Launch RVIZ
+
+		roslaunch turtlebot_rviz_launchers view_navigation.launch 
+
+	4. Launch Teleoperation package
+
+		roslaunch turtlebot_teleop keyboard_teleop.launch
 
 
 ## Record path service
 
 With the porpose of record a path a recording service, that can be found in bag_recorder folder located inside this repository, is used. This service create a bag file and record all topic specified when rosservice is called. Gazebo and teleoperation package should be running before the service is called.
+ 
+     1. bag_recorder folder should be located into catkin_ws to build the package:
+        
+           catkin_make -DCATKIN_WHITELIST_PACKAGES="bag_recorder"
 
-	1. To start the service:
+     1.1 These package are requiered to do the build: geometry_msgs, rosbag, roscpp, rospy, rostopic, sensor_msgs, std_msgs and message_generation
+
+     2. Start Gazebo, AMCL,Rviz and teleop as been done previously
+
+	3. Start the service:
 
 		rosrun bag_recorder recorder.py
 
-	2. To begin a recording session:
+	4. To begin a recording session:
 
-		rosservice call start_record '{bag_path:<full path>, topic_list:['/f'],create_path:TRUE}'
+		rosservice call start_record '{bag_path:<full path>, topic_list:['/tf','/scan'],make_path:TRUE}'
 
-	3. To stop a recording session:
+	5. To stop a recording session:
 
 		rosserviec call stop_record '{bag_id:"bag_id"}'
 
@@ -62,7 +92,7 @@ For autonomus navigation AMCL package is used. This packages subscribe to /scan,
 
 	1. Launch Gazebo
 
-		roslaunch turtlebot_gazebo gmapping_demo.launch
+		roslaunch turtlebot_gazebo turtlebot_world.launch  #roslaunch turtlebot_gazebo gmapping_demo.launch
 
 	2. Launch AMCL
 
@@ -70,10 +100,10 @@ For autonomus navigation AMCL package is used. This packages subscribe to /scan,
 
 	3. Launch RVIZ
 
-		roslaunch turtlebot_rviz_launchers view_navigation.launch --srceen
+		roslaunch turtlebot_rviz_launchers view_navigation.launch 
 
     	4. Run rosbag_play.py script to navigate  (IN PROGRESS)
 
-		python rosbag_play.py
+		python rosbag_play.py <full path/bagfile.bag>
 
 
